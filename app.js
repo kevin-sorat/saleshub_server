@@ -502,10 +502,10 @@ app.post('/api/salesopportunities', function(request, response) {
     var value = sanitizeInput(request.body.value);
     */
 
-    saveSalesOpportunity(null, request.body.companyname, request.body.description, request.body.price, request.body.commission);
+    saveSalesOpportunity(null, request.body.companyname, request.body.description, request.body.price, request.body.commission, response);
 });
 
-var saveSalesOpportunity = function(id, companyname, description, price, commission) {
+var saveSalesOpportunity = function(id, companyname, description, price, commission, response) {
     
         if (id === undefined) {
             // Generated random id
@@ -521,8 +521,9 @@ var saveSalesOpportunity = function(id, companyname, description, price, commiss
             if (err) {
                 console.log(err);
                 response.sendStatus(500);
-            } else
+            } else {
                 response.sendStatus(200);
+            }
             response.end();
         });
     
